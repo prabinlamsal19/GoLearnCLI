@@ -71,11 +71,24 @@ func HandleGet(getCmd *flag.FlagSet , all *bool , id *string){
 func VallidateVideo(addCmd *flag.FlagSet , id *string , title *string , url *string , imageurl *string, description *string) { 
 	if *id == "" || *title == "" || *url == "" || *imageUrl == "" || *description = "" { 
 		fmt.Print("all fields are required for adding a video") 
-		addCmd.PrintDefaults() 
+		addCmd.PrintDefaults() //built in in the flag package
 		os.Exit(1) 
 	}
 }
 
 func HandleAdd(addCmd *flag.FlagSet , id *string , title *string , url *string , imageurl *string, description *string) { 
+	VallidateVideo(addCmd , id , title, url , imageUrl ,description) 
 
-}
+	video := video { 
+		Id : *id , 
+		Title : *title, 
+		Description: *description, 
+		Imageurl : *imageUrl, 
+		Url: *url, 
+	}  
+
+	videos := getVideos() 
+	videos = append(videos,video) 
+
+	saveVideos(videos) 
+} 
