@@ -1,10 +1,10 @@
 package main 
 
-import { 
+import ( 
 	"fmt"
 	"flag"
 	"os"
-} 
+)  
 
 func main() { 
 	//'videos get' subcommand 
@@ -29,11 +29,10 @@ func main() {
 	//handle get, add and wrong input by the user 
 	switch os.Args[1]{ 
 	case "get": //if its the get command 
-	//handle get here 
-
+	//handle get here  
+		HandleGet(getCmd, getAll ,getID)
 	case "add": 
-	//handle add here 
-
+		HandleAdd(addCmd , addID , addTitle , addUrl , addImageUrl , addDesc)
 	default: //if we don't understand the input 
 	}
 }   
